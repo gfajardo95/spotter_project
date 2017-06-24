@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static "assets/css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body ng-app="exerciseApp">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="#!/">
+                <button class="btn btn-primary">Home</button>
+            </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome to Spotter</h1>
+            <a href="#!/createWorkout" class="btn btn-primary btn-sm">
+                <i class="glyphicon glyphicon-chevron-left"></i>Create Workout
+            </a>
+        </div>
+    </div>
+    <div ng-view></div>
+</div>
+
+<div id="footer" class=" container-fluid">
+    <div class="navbar navbar-inverse navbar-fixed-bottom text-center">
+        <p class="text-warning">&copy; 2017 Spotter Ltd.</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js"></script>
+<script src="{% static "resources/js/app.js" %}"></script>
+<script src="{% static "resources/js/controller/controllers.js" %}"></script>
+<script src="{% static "resources/js/service/workoutService.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<div class="row container-fluid">
+    <div class="col-sm-4">
+        <form novalidate name="newExerciseForm" ng-submit="addExercise()">
+            <input type="hidden" ng-model="newExercise.exerciseId"/>
+            <div class="form-group">
+                <label for="exName">Exercise Name</label>
+                <input type="text" class="form-control" id="exName" name="exName"
+                       ng-model="newExercise.exerciseName" required ng-minlength="3"/>
+                <span class="text-warning"
+                      ng-show="newWorkoutForm.exName.$error.required">exercise name is required</span>
+                <span class="text-warning" ng-show="newWorkoutForm.exName.$error.minlength">exercise name must be at least 3 characters long</span>
+            </div>
+            <div class="form-group">
+                <label for="setsInput">Sets</label>
+                <input type="number" class="form-control" id="setsInput" name="sets"
+                       ng-model="newExercise.sets" min="1" max="500" required/>
+                <span class="text-warning" ng-show="newWorkoutForm.sets.$error.required">sets is required</span>
+                <span class="text-warning" ng-show="newWorkoutForm.sets.$error.number">sets value must be between 1 and 500</span>
+            </div>
+            <div class="form-group">
+                <label for="repsInput">Reps</label>
+                <input type="number" class="form-control" id="repsInput" name="reps"
+                       ng-model="newExercise.reps" min="1" max="1000000" required/>
+                <span class="text-warning" ng-show="newWorkoutForm.reps.$error.required">reps is required</span>
+                <span class="text-warning" ng-show="newWorkoutForm.reps.$error.number">reps value must be between 1 and 1000000</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-success btn-sm" ng-disabled="newWorkoutForm.$invalid"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-8">
+        <form name="newWorkoutForm" ng-submit="createWorkout(exercises)">
+            <div class="text-danger" ng-show="errorMessage">{{ errorMessage }}</div>
+            <div class="text-success" ng-show="successMessage">{{ successMessage }}</div>
+            <div class="form-group">
+                <label>
+                    Workout Name
+                </label>
+                <input class="form-control" ng-model="workout.workoutName"/>
+            </div>
+            <div class="form-group">
+                <label>
+                    Workout Type
+                </label>
+                <input class="form-control" ng-model="workout.workoutType"/>
+            </div>
+            <div class="form-group">
+                <table class="table table-responsive table-striped">
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                    </tr>
+                    <tr ng-repeat="exercise in exercises">
+                        <td>{{ exercise.exerciseName }}</td>
+                        <td>{{ exercise.sets }}</td>
+                        <td>{{ exercise.reps }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Workout" class="btn btn-success btn-sm"/>
+            </div>
+        </form>
+    </div>
+</div>

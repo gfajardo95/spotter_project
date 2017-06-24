@@ -1,0 +1,95 @@
+<div class="row">
+    {% comment %}cancelling the update still calls the update function instead of the delete function..{% endcomment %}
+    <div class="col-md-4" ng-hide="!editing">
+        <form novalidate name="newWorkoutForm" ng-submit="updateWorkout(workout, workout.workoutId)">
+            <table class="table table-responsive">
+                <tr>
+                    <th>Workout Name</th>
+                    <th>Workout Type</th>
+                    <th>Exercises</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control" ng-model="workout.workoutName">
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="workout.workoutType">
+                    </td>
+                    <td>
+                        <table class="table table-responsive">
+                            <tr>
+                                <th>Exercise</th>
+                                <th>Sets</th>
+                                <th>Reps</th>
+                            </tr>
+                            <tr ng-repeat="exercise in workout.exercises">
+                                <td>
+                                    <input class="form-control" ng-model="exercise.exerciseName">
+                                </td>
+                                <td>
+                                    <input class="form-control" ng-model="exercise.sets">
+                                </td>
+                                <td>
+                                    <input class="form-control" ng-model="exercise.reps">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success btn-sm"
+                       ng-disabled="newWorkoutForm.$invalid"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4" ng-hide="editing">
+        <table class="table table-responsive table-striped">
+            <tr>
+                <button class="btn btn-primary btn-sm" ng-click="getAllWorkouts()">Show Workouts</button>
+            </tr>
+            <div class="text-success" ng-show="successMessage">{{ successMessage }}</div>
+            <div class="text-danger" ng-show="errorMessage">{{ errorMessage }}</div>
+            <tr>
+                <th>Workout Name</th>
+                <th>Workout Type</th>
+                <th>Exercises</th>
+            </tr>
+            <tr ng-repeat="workout in workouts">
+                <td>{{ workout.workoutName }}</td>
+                <td>{{ workout.workoutType }}</td>
+                <td>
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                        </tr>
+                        <tr ng-repeat="exercise in workout.exercises">
+                            <td>{{ exercise.exerciseName }}</td>
+                            <td>{{ exercise.sets }}</td>
+                            <td>{{ exercise.reps }}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="editWorkout(workout)">Edit
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger"
+                            ng-click="deleteWorkout(workout, workout.workoutId)">Delete
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

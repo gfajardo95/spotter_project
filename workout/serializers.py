@@ -4,17 +4,18 @@ from .models import Workout, Exercise
 
 
 class ExerciseSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Exercise
         fields = '__all__'
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
-    exercises = ExerciseSerializer(many=True, read_only=True)
+    exercises = ExerciseSerializer(many=True)
 
     class Meta:
         model = Workout
         fields = '__all__'
 
-
-exercises = ExerciseSerializer(many=True, read_only=True)
+#    def perform_create(self, serializer):
+#        serializer.save(exercises=self.request.exercises)

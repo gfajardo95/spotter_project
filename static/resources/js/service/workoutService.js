@@ -2,7 +2,7 @@
 
 var services = angular.module('exerciseApp');
 
-var baseUrl = '/api/workouts/';
+var baseUrl = '/api/workouts';
 
 services.factory('WorkoutsService', function ($resource) {
     return $resource(baseUrl, {}, {
@@ -12,7 +12,7 @@ services.factory('WorkoutsService', function ($resource) {
 });
 
 services.factory('WorkoutService', function ($resource) {
-    return $resource(baseUrl + ':id/', {}, {
+    return $resource(baseUrl + '/:id', {}, {
         show: {method: 'GET'},
         update: {method: 'PUT', params: {id: '@id'}},
         delete: {method: 'DELETE', params: {id: '@id'}}

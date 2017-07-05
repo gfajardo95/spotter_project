@@ -27,19 +27,25 @@ class ApiTest(TestCase):
     def setUp(self):
         self.factory = APIRequestFactory()
 
-    # I currently get a 400 so I hope to replicate this here, and
-    # see how I can make this nested post work
     def test_workout_and_nested_exercises_can_get_POSTed(self):
         request = self.factory.post(reverse('api:workout-list'), data=VALID_TEST_DATA, format='json')
-        print(request.body)
-        print(request.get_full_path())
+        # print(request.body)
+        # print(request.get_full_path())
 
         view = WorkoutViewSet.as_view({'post': 'create'})
         response = view(request)
-        print(response.data)
-        print("\nWorkout's exercises are: ")
-        print(response.data.get('exercises'))
-        print("\nWorkout's workout name is: ")
-        print(response.data.get('workoutName'))
+        # print(response.data)
+        # print("\nWorkout's exercises are: ")
+        # print(response.data.get('exercises'))
+        # print("\nWorkout's workout name is: ")
+        # print(response.data.get('workoutName'))
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_workout_can_get_deleted(self):
+        request = self.factory.delete(path='api/workouts/1/', data=VALID_TEST_DATA, format='json')
+
+        view = WorkoutViewSet.as_view({'delete': 'destroy'})
+        response = view(request)
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

@@ -1,7 +1,7 @@
 <div class="row">
     <!--cancelling the update still calls the update function instead of the delete function..-->
     <div class="col-md-4" ng-hide="!editing">
-        <form novalidate name="newWorkoutForm" ng-submit="updateWorkout(workout, workout.workoutId)">
+        <form novalidate name="newWorkoutForm" ng-submit="updateWorkout(workout)">
             <table class="table table-responsive">
                 <tr>
                     <th>Workout Name</th>
@@ -86,7 +86,7 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger"
-                            ng-click="deleteWorkout(workout, workout.workoutId)">Delete
+                            ng-click="deleteWorkout(workout)">Delete
                     </button>
                 </td>
             </tr>

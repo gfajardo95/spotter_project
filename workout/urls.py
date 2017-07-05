@@ -2,7 +2,9 @@ from rest_framework.routers import DefaultRouter
 
 from .api import WorkoutViewSet, ExerciseViewSet
 
-router = DefaultRouter(trailing_slash=False)
+
+router = DefaultRouter()
+
 router.register(r'workouts', WorkoutViewSet)
 router.register(r'exercises', ExerciseViewSet)
 

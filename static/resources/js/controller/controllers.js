@@ -71,8 +71,8 @@
         };
 
         /*callback for ng-click 'updateWorkout': */
-        $scope.updateWorkout = function (newWorkout, workoutId) {
-            WorkoutService.update({id: workoutId}, newWorkout)
+        $scope.updateWorkout = function (newWorkout) {
+            WorkoutService.update({id: newWorkout.id}, newWorkout)
                 .$promise
                 .then(onUpdateWorkoutComplete, onUpdateError)
                 .finally(onUpdateFinally);
@@ -90,11 +90,11 @@
         /*callback for ng-click 'deleteWorkout':
          Learning Note: the update to workouts must be declared in the finally block to ensure the consecutive http call is
          done AFTER the first one. If you put it outside there's no guarantee it will happen in the order you coded it!*/
-        $scope.deleteWorkout = function (workout, workoutId) {
+        $scope.deleteWorkout = function (workout) {
             crudInit();
             $scope.workout = workout;
 
-            WorkoutService.delete({id: workoutId})
+            WorkoutService.delete({id: $scope.workout.id})
                 .$promise
                 .then(onDeleteWorkoutComplete, onDeleteError)
                 .finally(function () {

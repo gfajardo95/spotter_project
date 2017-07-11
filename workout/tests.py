@@ -13,13 +13,14 @@ VALID_TEST_DATA = {
     "exercises": [
         {
             "id": "1",
-            "exerciseName": "pushups",
+            "exercise_name": "pushups",
             "sets": 5,
             "reps": 5,
             "workout": 1
         }],
-    "workoutName": "test",
-    "workoutType": "test"
+    "workout_name": "test",
+    "workout_type": "test",
+    "created_by": "1"
 }
 
 
@@ -42,10 +43,15 @@ class ApiTest(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    # fix the url
     def test_workout_can_get_deleted(self):
-        request = self.factory.delete(path='api/workouts/1/', data=VALID_TEST_DATA, format='json')
+        url = reverse('api:workout-detail', kwargs={'id': 1})
+        request = self.factory.delete(path=url, data=VALID_TEST_DATA, format='json')
 
         view = WorkoutViewSet.as_view({'delete': 'destroy'})
         response = view(request)
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_post_redirects_to_home_page(self):
+        pass

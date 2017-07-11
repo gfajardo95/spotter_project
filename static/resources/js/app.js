@@ -14,6 +14,10 @@
                 templateUrl: "static/resources/html/home.html",
                 controller: "WorkoutListCtrl"
             })
+            .when("/dashboard", {
+                templateUrl: "static/resources/html/dashboard.html",
+                controller: "WorkoutListCtrl"
+            })
             .when("/createWorkout", {
                 templateUrl: "static/resources/html/createWorkout.html",
                 controller: "WorkoutCreationCtrl"

@@ -30,9 +30,4 @@
             });
     });
 
-    /*app.run(function ($http) {
-        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $http.defaults.xsrfCookieName = 'csrftoken';
-    });*/
-
 })();

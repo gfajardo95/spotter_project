@@ -1,4 +1,6 @@
-<!--cancelling the update still calls the update function instead of the delete function..-->
+<!--cancelling the update still calls the update function instead of the delete function..
+add padding to the left of the body-->
+<div class="container">
     <div class="row">
         <div class="col-md-8" ng-hide="!editing">
             <form novalidate name="newWorkoutForm" ng-submit="updateWorkout(workout)">
@@ -93,3 +95,4 @@
             </table>
         </div>
     </div>
+</div>

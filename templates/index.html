@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="{% static "assets/css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "assets/css/myStyleSheet.css"%}" rel="stylesheet">
+    <link href="{% static "assets/css/myStyleSheet.css" %}" rel="stylesheet">
 </head>
 <body ng-app="exerciseApp">
 <div>
@@ -32,10 +32,8 @@
         </div>
     </nav>
 </div>
-<!--there needs to be some kind of padding here!-->
-<div class="container">
-    <div ng-view></div>
-</div>
+
+<div ng-view></div>
 
 <div id="footer" class=" container-fluid">
     <div class="navbar navbar-fixed-bottom text-center">

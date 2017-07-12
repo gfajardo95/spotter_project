@@ -22,7 +22,7 @@ class WorkoutSerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
     # def create(self, validated_data):
-    #     import pdb; pdb.set_trace()
+    #     # import pdb; pdb.set_trace()
     #     super().create(validated_data)
 
 

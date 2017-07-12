@@ -11,9 +11,9 @@ class WorkoutViewSet(ModelViewSet):
     serializer_class = WorkoutSerializer
     lookup_field = 'id'
 
-    def perform_create(self, serializer):
-        # import pdb; pdb.set_trace()
-        serializer.save(created_by=self.request.user)
+    # def perform_create(self, serializer):
+    #     # import pdb; pdb.set_trace()
+    #     serializer.save(created_by=self.request.user)
 
 
 class ExerciseViewSet(ModelViewSet):

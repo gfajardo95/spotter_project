@@ -29,6 +29,7 @@ class ApiTest(TestCase):
         self.factory = APIRequestFactory()
 
     def test_workout_and_nested_exercises_can_get_POSTed(self):
+        # authenticate the request with the root user..
         request = self.factory.post(reverse('api:workout-list'), data=VALID_TEST_DATA, format='json')
         # print(request.body)
         # print(request.get_full_path())

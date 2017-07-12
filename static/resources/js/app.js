@@ -7,7 +7,10 @@
 
     var app = angular.module('exerciseApp', ['ngRoute', 'ngResource']);
 
-    app.config(function ($routeProvider) {
+    app.config(function ($httpProvider, $routeProvider) {
+
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         $routeProvider
             .when("/", {
@@ -26,4 +29,10 @@
                 redirectTo: "/"
             });
     });
+
+    /*app.run(function ($http) {
+        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+        $http.defaults.xsrfCookieName = 'csrftoken';
+    });*/
+
 })();

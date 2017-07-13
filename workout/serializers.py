@@ -13,22 +13,23 @@ class ExerciseSerializer(serializers.ModelSerializer):
         read_only_fields = ('workout',)
 
 
-class WorkoutSerializer(WritableNestedModelSerializer):
-    exercises = ExerciseSerializer(many=True)
-    # user = serializers.ReadOnlyField(source='user.username')
-
-    class Meta:
-        model = Workout
-        fields = '__all__'
-
-    # def create(self, validated_data):
-    #     # import pdb; pdb.set_trace()
-    #     super().create(validated_data)
-
-
 class UserSerializer(serializers.ModelSerializer):
     workouts = serializers.PrimaryKeyRelatedField(many=True, queryset=Workout.objects.all())
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'workouts')
+        fields = ('id', 'username', 'workouts')
+
+
+class WorkoutSerializer(WritableNestedModelSerializer):
+    exercises = ExerciseSerializer(many=True)
+    created_by = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    class Meta:
+        model = Workout
+        fields = ('id', 'created_by', 'workout_name', 'workout_type', 'exercises')
+
+    def create(self, validated_data):
+        # import pdb; pdb.set_trace()
+        instance = super().create(validated_data)
+        return instance

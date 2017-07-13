@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name="index.html"))),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('workout.urls', namespace='api')),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if settings.DEBUG:

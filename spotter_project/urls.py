@@ -19,16 +19,19 @@ from django.contrib import admin
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import TemplateView
 
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name="index.html"))),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name="index.html"))),
+    url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api/', include('workout.urls', namespace='api')),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+                      url(r'^__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns

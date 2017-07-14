@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+# it's possible to add a Meta class to these models and set an ordering parameter for example
 class Workout(models.Model):
     # uuid = models.UUIDField()
     workout_name = models.CharField(max_length=50)

@@ -15,10 +15,17 @@ class ExerciseSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     workouts = serializers.PrimaryKeyRelatedField(many=True, queryset=Workout.objects.all())
+    password = serializers.HiddenField(default='')
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'workouts')
+        fields = ('id', 'username', 'email', 'workouts', 'password')
+
+    # password isn't set when it's created.. this gives an error
+    # def create(self, validated_data):
+    #     validated_data['password'] = self.context['request'].data['password']
+    #     user = User.objects.create(**validated_data)
+    #     return user
 
 
 class WorkoutSerializer(WritableNestedModelSerializer):
@@ -30,6 +37,5 @@ class WorkoutSerializer(WritableNestedModelSerializer):
         fields = ('id', 'created_by', 'workout_name', 'workout_type', 'exercises')
 
     def create(self, validated_data):
-        # import pdb; pdb.set_trace()
         instance = super().create(validated_data)
         return instance

@@ -11,6 +11,9 @@ class WorkoutViewSet(ModelViewSet):
     serializer_class = WorkoutSerializer
     lookup_field = 'id'
 
+    def get_queryset(self):
+        return self.request.user.workouts.all()
+
 
 class ExerciseViewSet(ModelViewSet):
     queryset = Exercise.objects.all()
@@ -20,3 +23,6 @@ class ExerciseViewSet(ModelViewSet):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)

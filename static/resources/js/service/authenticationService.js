@@ -15,12 +15,27 @@
 
         return service;
 
-        function Login(){
-            var jwtUrl = 'api/api-token-auth'
+        function Login(username, password, callback) {
+            var jwtUrl = '/api/api-token-auth';
+
+            $http.post(jwtUrl, {username: username, password: password})
+                .then(function (response) {
+                    if (response.token) {
+                        $localStorage.currentUser = {
+                            username: username,
+                            token: response.token
+                        };
+                        $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+                        callback(true);
+                    } else {
+                        callback(false);
+                    }
+                });
         }
 
-        function Logout(){
-
+        function Logout() {
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
         }
 
     });

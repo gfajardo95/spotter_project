@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('exerciseApp', ['ngRoute', 'ngResource']);
+    var app = angular.module('exerciseApp', ['ngRoute', 'ngResource', 'ngStorage']);
 
     app.config(function ($httpProvider, $routeProvider) {
 
@@ -28,6 +28,12 @@
             .otherwise({
                 redirectTo: "/"
             });
+    });
+
+    app.run(function($localStorage, $http){
+        if ($localStorage.currentUser){
+            $http.defaults.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        }
     });
 
 })();

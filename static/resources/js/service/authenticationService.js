@@ -20,10 +20,10 @@
 
             $http.post(jwtUrl, {username: username, password: password})
                 .then(function (response) {
-                    if (response.token) {
+                    if (response.data.token) {
                         $localStorage.currentUser = {
                             username: username,
-                            token: response.token
+                            token: response.data.token
                         };
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
                         callback(true);

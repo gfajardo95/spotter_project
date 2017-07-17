@@ -12,10 +12,10 @@ add padding to the left of the body-->
                     </tr>
                     <tr>
                         <td>
-                            <input class="form-control" ng-model="workout.workoutName">
+                            <input class="form-control" ng-model="workout.workout_name">
                         </td>
                         <td>
-                            <input class="form-control" ng-model="workout.workoutType">
+                            <input class="form-control" ng-model="workout.workout_type">
                         </td>
                         <td>
                             <table class="table table-responsive">
@@ -26,7 +26,7 @@ add padding to the left of the body-->
                                 </tr>
                                 <tr ng-repeat="exercise in workout.exercises">
                                     <td>
-                                        <input class="form-control" ng-model="exercise.exerciseName">
+                                        <input class="form-control" ng-model="exercise.exercise_name">
                                     </td>
                                     <td>
                                         <input class="form-control" ng-model="exercise.sets">
@@ -65,8 +65,8 @@ add padding to the left of the body-->
                     <th>Exercises</th>
                 </tr>
                 <tr ng-repeat="workout in workouts">
-                    <td>{{ workout.workoutName }}</td>
-                    <td>{{ workout.workoutType }}</td>
+                    <td>{{ workout.workout_name }}</td>
+                    <td>{{ workout.workout_type }}</td>
                     <td>
                         <table class="table table-responsive">
                             <tr>
@@ -75,7 +75,7 @@ add padding to the left of the body-->
                                 <th>Reps</th>
                             </tr>
                             <tr ng-repeat="exercise in workout.exercises">
-                                <td>{{ exercise.exerciseName }}</td>
+                                <td>{{ exercise.exercise_name }}</td>
                                 <td>{{ exercise.sets }}</td>
                                 <td>{{ exercise.reps }}</td>
                             </tr>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="col-md-6">
+        <h2>Login</h2>
+        <form novalidate ng-submit="login(username, password)">
+            <div class="form-group">
+                <lable for="userInput">Username</lable>
+                <input id="userInput" type="text" class="form-control" ng-model="username"/>
+                <!--error messages-->
+                <span></span>
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                <input id="passwordInput" type="password" class="form-control" ng-model="password"/>
+                <!--error messages-->
+                <span></span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

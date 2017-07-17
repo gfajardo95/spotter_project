@@ -7,10 +7,12 @@
 
     var app = angular.module('exerciseApp', ['ngRoute', 'ngResource', 'ngStorage']);
 
-    app.config(function ($httpProvider, $routeProvider) {
+    app.config(function ($routeProvider, $resourceProvider, $httpProvider) {
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+        $resourceProvider.defaults.stripTrailingSlashes = false;
 
         $routeProvider
             .when("/", {

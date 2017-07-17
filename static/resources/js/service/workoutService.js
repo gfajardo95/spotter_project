@@ -8,8 +8,6 @@ services.factory('WorkoutsService', function ($resource) {
     return $resource(baseUrl, {}, {
         query: {method: 'GET', isArray: true},
         create: {method: 'POST'}
-    },{
-        stripTrailingSlashes: false
     })
 });
 
@@ -18,7 +16,5 @@ services.factory('WorkoutService', function ($resource) {
         show: {method: 'GET'},
         update: {method: 'PUT', params: {id: '@id'}},
         delete: {method: 'DELETE', params: {id: '@id'}}
-    },{
-        stripTrailingSlashes: false
     })
 });

@@ -148,4 +148,33 @@
 
     }]);
 
+    app.controller('LoginCtrl', ['$scope', '$location', 'AuthenticationService', function ($scope, $location, AuthenticationService) {
+        $scope.busy = false;
+
+        var loginInit = function () {
+            $scope.busy = true;
+        };
+
+        $scope.login = function (username, password) {
+            loginInit();
+
+            //missing callback parameter
+            AuthenticationService.Login(username, password, function (result) {
+                if (result === true) {
+                    $scope.busy = false;
+                    $location.path('/');
+                } else {
+                    $scope.errorMessage = "username/password combination is incorrect";
+                    $scope.busy = false;
+                }
+            });
+            /*
+             .then(onLoginSuccess, onLoginError)
+             .finally(function () {
+             $scope.busy = false;
+             })*/
+        }
+
+    }]);
+
 }());

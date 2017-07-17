@@ -25,6 +25,10 @@
                 templateUrl: "static/resources/html/createWorkout.html",
                 controller: "WorkoutCreationCtrl"
             })
+            .when("/login", {
+                templateUrl: "static/resources/html/login.html",
+                controller: "LoginCtrl"
+            })
             .otherwise({
                 redirectTo: "/"
             });

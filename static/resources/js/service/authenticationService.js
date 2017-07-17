@@ -16,7 +16,7 @@
         return service;
 
         function Login(username, password, callback) {
-            var jwtUrl = '/api/api-token-auth';
+            var jwtUrl = '/api-token-auth/';
 
             $http.post(jwtUrl, {username: username, password: password})
                 .then(function (response) {

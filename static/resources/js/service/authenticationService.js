@@ -25,7 +25,7 @@
                             username: username,
                             token: response.data.token
                         };
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+                        $http.defaults.headers.common['Authorization'] = 'JWT ' + response.data.token;
                         callback(true);
                     } else {
                         callback(false);
@@ -35,7 +35,7 @@
 
         function Logout() {
             delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
+            $http.defaults.headers.common['Authorization'] = '';
         }
 
     });

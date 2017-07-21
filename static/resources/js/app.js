@@ -38,7 +38,7 @@
 
     app.run(function($localStorage, $http){
         if ($localStorage.currentUser){
-            $http.defaults.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+            $http.defaults.headers.common['Authorization'] = 'JWT ' + $localStorage.currentUser.token;
         }
     });
 

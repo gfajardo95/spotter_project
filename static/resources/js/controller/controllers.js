@@ -80,7 +80,7 @@
 
         //DELETE
         var onDeleteWorkoutComplete = function (data) {
-            $scope.successMessage = "Workout '" + $scope.workout.workoutName + "' has been deleted."
+            $scope.successMessage = "Workout '" + $scope.workout.workout_name + "' has been deleted."
         };
 
         var onDeleteError = function (response) {
@@ -104,7 +104,7 @@
         };
     }]);
 
-    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', function ($scope, WorkoutsService) {
+    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', '$localStorage', function ($scope, WorkoutsService, $localStorage) {
         $scope.workout = {};
         $scope.exercises = [];
         $scope.newExercise = {};
@@ -135,7 +135,9 @@
 
         $scope.createWorkout = function (exercises) {
             crudInit();
+
             $scope.workout.exercises = exercises;
+            //$scope.workout.created_by = $localStorage.currentUser;
 
             WorkoutsService.create($scope.workout)
                 .$promise.then(onCreateWorkoutComplete, onCreateError)
@@ -158,21 +160,15 @@
         $scope.login = function (username, password) {
             loginInit();
 
-            //missing callback parameter
             AuthenticationService.Login(username, password, function (result) {
                 if (result === true) {
                     $scope.busy = false;
                     $location.path('/');
                 } else {
-                    $scope.errorMessage = "username/password combination is incorrect";
                     $scope.busy = false;
+                    $scope.errorMessage = "username/password combination is incorrect";
                 }
             });
-            /*
-             .then(onLoginSuccess, onLoginError)
-             .finally(function () {
-             $scope.busy = false;
-             })*/
         }
 
     }]);

@@ -104,7 +104,7 @@
         };
     }]);
 
-    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', '$localStorage', function ($scope, WorkoutsService, $localStorage) {
+    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', 'UserService', '$interval', function ($scope, WorkoutsService, UserService, $interval) {
         $scope.workout = {};
         $scope.exercises = [];
         $scope.newExercise = {};
@@ -125,19 +125,25 @@
         };
 
         //CREATE
-        var onCreateWorkoutComplete = function (data) {
+        var onCreateWorkoutComplete = function () {
             $scope.successMessage = "Workout created!";
         };
 
-        var onCreateError = function (response) {
+        var onCreateError = function () {
             $scope.errorMessage = "Failed to create the new workout.";
         };
 
-        $scope.createWorkout = function (exercises) {
-            crudInit();
+        var onUserSuccess = function (data) {
+            $scope.gotUser = true;
+            $scope.user = data;
+        };
 
-            $scope.workout.exercises = exercises;
-            //$scope.workout.created_by = $localStorage.currentUser;
+        var onUserError = function () {
+            $scope.gotUser = false;
+        };
+
+        var createWorkoutWithUser = function (currentUser) {
+            $scope.workout.created_by = currentUser['0'].id;//.id;
 
             WorkoutsService.create($scope.workout)
                 .$promise.then(onCreateWorkoutComplete, onCreateError)
@@ -146,6 +152,44 @@
                     $scope.workout = {};
                     $scope.exercises = [];
                 });
+        };
+
+        $scope.createWorkout = function (exercises) {
+            crudInit();
+            $scope.workout.exercises = exercises;
+
+            var finished = false;
+            UserService.query()
+                .$promise.then(onUserSuccess, onUserError)
+                .finally(function(){
+                    if ($scope.gotUser){
+                        createWorkoutWithUser($scope.user)
+                    }else{
+                        $scope.errorMessage = "Failed to create the new workout.";
+                    }
+                });
+
+            /*
+            $interval(function(){
+                if (finished) {
+                    if ($scope.gotUser) {
+                        createWorkoutWithUser(user)
+                    } else {
+                        $scope.errorMessage = "Failed to create the new workout.";
+                    }
+                }
+            }, 500, count);
+            */
+            /*
+            while (finished || !finished) {
+                if (finished) {
+                    if ($scope.gotUser) {
+                        createWorkoutWithUser(user)
+                    } else {
+                        $scope.errorMessage = "Failed to create the new workout.";
+                    }
+                }
+            }*/
         };
 
     }]);

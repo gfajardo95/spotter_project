@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="exName">Exercise Name</label>
                 <input type="text" class="form-control" id="exName" name="exName"
-                       ng-model="newExercise.exerciseName" required ng-minlength="3"/>
+                       ng-model="newExercise.exercise_name" required ng-minlength="3"/>
                 <span class="text-warning"
                       ng-show="newWorkoutForm.exName.$error.required">exercise name is required</span>
                 <span class="text-warning" ng-show="newWorkoutForm.exName.$error.minlength">exercise name must be at least 3 characters long</span>
@@ -38,13 +38,13 @@
                 <label>
                     Workout Name
                 </label>
-                <input class="form-control" ng-model="workout.workoutName"/>
+                <input class="form-control" ng-model="workout.workout_name"/>
             </div>
             <div class="form-group">
                 <label>
                     Workout Type
                 </label>
-                <input class="form-control" ng-model="workout.workoutType"/>
+                <input class="form-control" ng-model="workout.workout_type"/>
             </div>
             <div class="form-group">
                 <table class="table table-responsive table-striped">
@@ -54,7 +54,7 @@
                         <th>Reps</th>
                     </tr>
                     <tr ng-repeat="exercise in exercises">
-                        <td>{{ exercise.exerciseName }}</td>
+                        <td>{{ exercise.exercise_name }}</td>
                         <td>{{ exercise.sets }}</td>
                         <td>{{ exercise.reps }}</td>
                     </tr>

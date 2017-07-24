@@ -104,7 +104,7 @@
         };
     }]);
 
-    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', 'UserService', '$interval', function ($scope, WorkoutsService, UserService, $interval) {
+    app.controller('WorkoutCreationCtrl', ['$scope', 'WorkoutsService', 'UserService', function ($scope, WorkoutsService, UserService) {
         $scope.workout = {};
         $scope.exercises = [];
         $scope.newExercise = {};
@@ -143,7 +143,7 @@
         };
 
         var createWorkoutWithUser = function (currentUser) {
-            $scope.workout.created_by = currentUser['0'].id;//.id;
+            $scope.workout.created_by = currentUser['0'].id;
 
             WorkoutsService.create($scope.workout)
                 .$promise.then(onCreateWorkoutComplete, onCreateError)
@@ -169,27 +169,6 @@
                     }
                 });
 
-            /*
-            $interval(function(){
-                if (finished) {
-                    if ($scope.gotUser) {
-                        createWorkoutWithUser(user)
-                    } else {
-                        $scope.errorMessage = "Failed to create the new workout.";
-                    }
-                }
-            }, 500, count);
-            */
-            /*
-            while (finished || !finished) {
-                if (finished) {
-                    if ($scope.gotUser) {
-                        createWorkoutWithUser(user)
-                    } else {
-                        $scope.errorMessage = "Failed to create the new workout.";
-                    }
-                }
-            }*/
         };
 
     }]);

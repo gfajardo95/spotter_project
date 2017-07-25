@@ -52,7 +52,11 @@ add padding to the left of the body-->
             </form>
         </div>
 
-        <div class="col-md-8" ng-hide="editing">
+        <div class="col-md-6" ng-hide="editing">
+            <div ui-grid="workoutGrid" class="myGrid"></div>
+        </div>
+
+        <div class="col-md-6" ng-hide="editing">
             <table class="table table-responsive table-striped">
                 <tr>
                     <button class="btn btn-primary btn-sm" ng-click="getAllWorkouts()">Show Workouts</button>
@@ -94,5 +98,6 @@ add padding to the left of the body-->
                 </tr>
             </table>
         </div>
+
     </div>
 </div>

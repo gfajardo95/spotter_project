@@ -3,9 +3,3 @@ body{
     padding-left: 4px;
     padding-right: 4px;
 }
-
-/*is there a way to make it fill a bootstrap col div??*/
-.myGrid{
-    width: 500px;
-    height: 250px;
-}

@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('exerciseApp', ['ngRoute', 'ngResource', 'ngStorage', 'ui.grid']);
+    var app = angular.module('exerciseApp', ['ngRoute', 'ngResource', 'ngStorage']);
 
     app.config(function ($routeProvider, $resourceProvider, $httpProvider) {
 

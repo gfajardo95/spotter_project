@@ -8,7 +8,6 @@
     var app = angular.module('exerciseApp');
 
     app.controller('WorkoutListCtrl', ['$scope', 'WorkoutService', 'WorkoutsService', function ($scope, WorkoutService, WorkoutsService) {
-        $scope.workoutGrid = {};
         $scope.isBusy = false;
         $scope.successMessage = "";
         $scope.errorMessage = "";
@@ -30,8 +29,6 @@
             if ($scope.workouts.length === 0) {
                 $scope.successMessage = "There are no workouts to display."
             }
-
-            $scope.workoutGrid.data = data;
         };
 
         var onReadError = function () {

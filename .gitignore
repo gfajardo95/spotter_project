@@ -9,3 +9,12 @@ db.sqlite3
 workout/migrations/__pycache__/
 out
 gen
+!/static/node_modules/angular-smart-table/ISSUE_TEMPLATE.md
+!/static/node_modules/angular-smart-table/bower.json
+!/static/node_modules/angular-smart-table/.npmignore
+!/static/node_modules/angular-smart-table/.travis.yml
+!/static/node_modules/angular-smart-table/readme.md
+!/static/node_modules/angular-smart-table/changeLog.md
+!/static/node_modules/angular-smart-table/gulpFile.js
+!/static/node_modules/angular-smart-table/package.json
+!/static/node_modules/angular-smart-table/index.js

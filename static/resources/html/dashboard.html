@@ -52,8 +52,37 @@ add padding to the left of the body-->
             </form>
         </div>
 
+        <!--smart table-->
         <div class="col-md-6" ng-hide="editing">
-            <table class="table table-responsive table-striped">
+            <table st-table="workouts" class="table table-responsive">
+                <tr>
+                    <th>Workout Name</th>
+                    <th>Workout Type</th>
+                    <th>Exercises</th>
+                </tr>
+                <tr ng-repeat="workout in workouts">
+                    <td>{{ workout.workout_name }}</td>
+                    <td>{{ workout.workout_type }}</td>
+                    <td>
+                        <table st-table="workout.exercises" class="table table-responsive">
+                            <tr>
+                                <th>Exercise</th>
+                                <th>Sets</th>
+                                <th>Reps</th>
+                            </tr>
+                            <tr ng-repeat="exercise in workout.exercises">
+                                <td>{{ exercise.exercise_name }}</td>
+                                <td>{{ exercise.sets }}</td>
+                                <td>{{ exercise.reps }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-6" ng-hide="editing">
+            <table class="table table-responsive">
                 <tr>
                     <button class="btn btn-primary btn-sm" ng-click="getAllWorkouts()">Show Workouts</button>
                 </tr>

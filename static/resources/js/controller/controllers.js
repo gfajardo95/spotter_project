@@ -23,6 +23,12 @@
             $scope.editing = false;
         };
 
+        //make row selectable and attach it to a function that adds the exercises to this list
+        $scope.exercisesDetail = [];
+        $scope.getExercises = function(workout){
+            $scope.exercisesDetail = workout.exercises;
+        };
+
         //READ
         var onReadWorkoutComplete = function (data) {
             $scope.workouts = data;

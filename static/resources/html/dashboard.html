@@ -1,6 +1,10 @@
 <!--cancelling the update still calls the update function instead of the delete function..
 add padding to the left of the body-->
 <div class="container-fluid">
+    <div class="row" ng-hide="editing">
+        <button class="btn btn-primary btn-sm" ng-click="getAllWorkouts()">Show Workouts</button>
+    </div>
+
     <div class="row">
         <div class="col-md-8" ng-hide="!editing">
             <form novalidate name="newWorkoutForm" ng-submit="updateWorkout(workout)">
@@ -52,74 +56,36 @@ add padding to the left of the body-->
             </form>
         </div>
 
-        <!--smart table-->
         <div class="col-md-6" ng-hide="editing">
             <table st-table="workouts" class="table table-responsive">
                 <tr>
                     <th>Workout Name</th>
                     <th>Workout Type</th>
-                    <th>Exercises</th>
+                    <th></th>
                 </tr>
-                <tr ng-repeat="workout in workouts">
+                <tr st-select-row="workout" ng-repeat="workout in workouts">
                     <td>{{ workout.workout_name }}</td>
                     <td>{{ workout.workout_type }}</td>
                     <td>
-                        <table st-table="workout.exercises" class="table table-responsive">
-                            <tr>
-                                <th>Exercise</th>
-                                <th>Sets</th>
-                                <th>Reps</th>
-                            </tr>
-                            <tr ng-repeat="exercise in workout.exercises">
-                                <td>{{ exercise.exercise_name }}</td>
-                                <td>{{ exercise.sets }}</td>
-                                <td>{{ exercise.reps }}</td>
-                            </tr>
-                        </table>
+                        <button class="btn btn-xs" ng-click="getExercises(workout)">
+                            <span class="glyphicon-chevron-right"></span>
+                        </button>
                     </td>
                 </tr>
             </table>
         </div>
 
-        <div class="col-md-6" ng-hide="editing">
-            <table class="table table-responsive">
+        <div class="col-md-6" ng-show="exercisesDetail.length">
+            <table st-table="exercisesDetail" class="table table-responsive">
                 <tr>
-                    <button class="btn btn-primary btn-sm" ng-click="getAllWorkouts()">Show Workouts</button>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
                 </tr>
-                <div class="text-success" ng-show="successMessage">{{ successMessage }}</div>
-                <div class="text-danger" ng-show="errorMessage">{{ errorMessage }}</div>
-                <tr>
-                    <th>Workout Name</th>
-                    <th>Workout Type</th>
-                    <th>Exercises</th>
-                </tr>
-                <tr ng-repeat="workout in workouts">
-                    <td>{{ workout.workout_name }}</td>
-                    <td>{{ workout.workout_type }}</td>
-                    <td>
-                        <table class="table table-responsive">
-                            <tr>
-                                <th>Exercise</th>
-                                <th>Sets</th>
-                                <th>Reps</th>
-                            </tr>
-                            <tr ng-repeat="exercise in workout.exercises">
-                                <td>{{ exercise.exercise_name }}</td>
-                                <td>{{ exercise.sets }}</td>
-                                <td>{{ exercise.reps }}</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary"
-                                ng-click="editWorkout(workout)">Edit
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger"
-                                ng-click="deleteWorkout(workout)">Delete
-                        </button>
-                    </td>
+                <tr ng-repeat="exercise in exercisesDetail">
+                    <td>{{ exercise.exercise_name }}</td>
+                    <td>{{ exercise.sets }}</td>
+                    <td>{{ exercise.reps }}</td>
                 </tr>
             </table>
         </div>

@@ -2,9 +2,10 @@ from django.urls import reverse
 from django.test import TestCase
 
 from rest_framework import status
-from rest_framework.test import APIRequestFactory
+from rest_framework.test import APIRequestFactory, APITestCase
 
 from .api import WorkoutViewSet
+from .models import Workout
 
 
 # http://127.0.0.1:8000/api/workouts
@@ -22,6 +23,14 @@ VALID_TEST_DATA = {
     "workout_type": "test",
     "created_by": "1"
 }
+
+
+class WorkoutViewTestCase(APITestCase):
+    def setUp(self):
+        super(WorkoutViewTestCase, self).setUp()
+
+    def test_workout_and_nested_exercises_can_get_POSTed(self):
+        pass
 
 
 class ApiTest(TestCase):

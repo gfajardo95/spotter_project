@@ -21,3 +21,4 @@ gen
 spotter_project/__pycache__/
 static/node_modules/
 workout/__pycache__/
+/static/assets/bootstrap-3.3.7-dist/

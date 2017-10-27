@@ -2,7 +2,7 @@
 ### Example user template template
 ### Example user template
 
-# IntelliJ project files
+# JetBrains project files
 .idea/
 */__pycache__/*
 out

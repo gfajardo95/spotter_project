@@ -8,7 +8,6 @@
 out
 gen
 
-db.sqlite3
 workout/migrations/*
 static/node_modules/*
 static/assets/*

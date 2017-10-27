@@ -28,10 +28,3 @@ urlpatterns = [
     url(r'^api/', include('workout.urls', namespace='api')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-
-    urlpatterns = [
-                      url(r'^__debug__/', include(debug_toolbar.urls)),
-                  ] + urlpatterns

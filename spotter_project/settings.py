@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = (
+    '127.0.0.1'
+)
 
 # Application definition
 
@@ -124,15 +127,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
+# collectstatic destination
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../spotter_static'))
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-INTERNAL_IPS = (
-    '127.0.0.1'
-)
+LOGIN_REDIRECT_URL = '/'
 
 # REST Framework
 REST_FRAMEWORK = {

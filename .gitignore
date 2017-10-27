@@ -4,8 +4,11 @@
 
 # IntelliJ project files
 .idea/
-db.sqlite3
 */__pycache__/*
-workout/migrations/__pycache__/
 out
 gen
+
+db.sqlite3
+workout/migrations/*
+static/node_modules/*
+static/assets/*

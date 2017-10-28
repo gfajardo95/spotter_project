@@ -175,6 +175,8 @@
 
     app.controller('LoginCtrl', ['$scope', '$location', 'AuthenticationService', function ($scope, $location, AuthenticationService) {
         $scope.busy = false;
+        $scope.username = 'guest';
+        $scope.password = 'abcpassword123';
 
         var loginInit = function () {
             $scope.busy = true;

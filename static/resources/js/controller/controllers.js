@@ -165,7 +165,7 @@
                     if ($scope.gotUser){
                         createWorkoutWithUser($scope.user)
                     }else{
-                        $scope.errorMessage = "Failed to create the new workout.";
+                        $scope.errorMessage = "You must sign in to create a workout";
                     }
                 });
 
@@ -173,7 +173,7 @@
 
     }]);
 
-    app.controller('LoginCtrl', ['$scope', '$location', 'AuthenticationService', function ($scope, $location, AuthenticationService) {
+    app.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'AuthenticationService', function ($scope, $rootScope, $location, AuthenticationService) {
         $scope.busy = false;
         $scope.username = 'guest';
         $scope.password = 'abcpassword123';
@@ -188,6 +188,7 @@
             AuthenticationService.Login(username, password, function (result) {
                 if (result === true) {
                     $scope.busy = false;
+                    $rootScope.isSignedIn = true;
                     $location.path('/');
                 } else {
                     $scope.busy = false;

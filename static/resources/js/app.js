@@ -36,9 +36,18 @@
             });
     });
 
-    app.run(function($localStorage, $http){
+    app.run(function($location, $localStorage, $http, $rootScope, AuthenticationService){
         if ($localStorage.currentUser){
             $http.defaults.headers.common['Authorization'] = 'JWT ' + $localStorage.currentUser.token;
+            $rootScope.isSignedIn = true;
+        }else{
+            $rootScope.isSignedIn = false;
+        }
+
+        $rootScope.signOut = function (){
+            AuthenticationService.Logout();
+            $rootScope.isSignedIn = false;
+            $location.path('/');
         }
     });
 
